@@ -13,6 +13,7 @@ import os
 
 options = Options()
 options.add_argument("--start-maximized") #maximizing the window
+options.add_experimental_option("detach", True)  # Prevent Chrome from closing
 #options.add_experimental_option("detach", True) (if u want to detach the browser after execution to allow debugging without impacting the browser session)
 
 def e_driver():

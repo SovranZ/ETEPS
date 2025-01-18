@@ -1,5 +1,5 @@
 from auto_imports import *
-
+from locators import LOGIN_USERNAME, LOGIN_PASSWORD, LOGIN_BUTTON
 
 def login(driver, username, password):
     """
@@ -11,14 +11,10 @@ def login(driver, username, password):
 
     driver.get("https://dev.eteps.co")
     time.sleep(2)
-    driver.find_element(By.XPATH,
-                        "/html/body/app-root/div/div/app-login/div/div[1]/div[1]/form/mat-form-field[1]/div[1]/div/div[2]/input").send_keys(
-        username)  # Replace 'username' with the actual ID or locator
-    driver.find_element(By.XPATH,
-                        "/html/body/app-root/div/div/app-login/div/div[1]/div[1]/form/mat-form-field[2]/div[1]/div/div[2]/input").send_keys(
-        password)  # Replace 'password' with the actual ID or locator
+    driver.find_element(*LOGIN_USERNAME).send_keys(username)
+    driver.find_element(*LOGIN_PASSWORD).send_keys(password)
+    driver.find_element(*LOGIN_BUTTON).click()
 
-    driver.find_element(By.XPATH, "/html/body/app-root/div/div/app-login/div/div[1]/div[1]/div[2]/button").click()
     WebDriverWait(driver, 10).until(EC.url_changes("https://dev.eteps.co"))
 
     print("Successfully logged in to", driver.title, "develop")
